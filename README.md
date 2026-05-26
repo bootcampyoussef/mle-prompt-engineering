@@ -60,6 +60,8 @@ mle-prompt-engineering/
 
 ## Environment
 
+Please make sure you **use this repository as a template** and set up a new virtual environment. You can use the following commands:
+
 ### macOS
 
 ```bash
