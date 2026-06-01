@@ -7,62 +7,65 @@ workflows with real provider calls. The notebooks use the
 [Groq](https://console.groq.com/docs) as the primary provider and
 [Mistral](https://docs.mistral.ai/) as the alternative provider.
 
-Follow the notebooks in numerical order. Each notebook is self-contained, but
+Each notebook is self-contained, but
 the concepts build from prompt anatomy to
 [structured outputs](https://console.groq.com/docs/structured-outputs),
 [ReAct-style](https://arxiv.org/abs/2210.03629) tool use,
 [guardrails](https://owasp.org/www-project-top-10-for-large-language-model-applications/),
 and [prompt evaluation](https://github.com/openai/evals).
 
+## Learning Objectives
+
+By the end of this repository, you should be able to:
+
+- Write zero-shot and few-shot prompts that reliably produce structured outputs.
+- Design prompts for multi-step reasoning with concise, inspectable final
+  outputs.
+- Implement a ReAct-style workflow for tasks requiring external information.
+- Extract structured data from unstructured text using schema-oriented prompt
+  design and validation.
+- Design guardrails that constrain LLM outputs to safe, on-topic responses,
+  including content filtering, prompt-injection resistance, and PII detection.
+
 ## Learning Path
 
 ```mermaid
-flowchart TD
-    A[01 - Prompting Foundations] --> B[02 - Structured Outputs]
-    B --> C[03 - Multi-Step Reasoning And ReAct]
-    C --> D[04 - Guardrails And Safety]
-    D --> E[05 - Prompt Evaluation Mini-Project]
+flowchart LR
+    NB1[01 - Prompting<br>Foundations]
+    NB1 --> NB2[02 - Structured<br>Outputs]
+    NB2 --> NB3[03 - Multi-Step Reasoning<br>and ReAct]
+    NB3 --> NB4[04 - Guardrails<br>and Safety]
+    NB4 --> NB5[05 - Prompt Evaluation<br>Mini-Project]
 ```
 
-- [01 - Prompting Foundations](01-prompting-foundations.ipynb): Build prompt
-  contracts, run
-  [zero-shot and few-shot prompts](https://arxiv.org/abs/2005.14165), and
-  compare real provider responses.
-- [02 - Structured Outputs](02-structured-outputs.ipynb): Use
-  [JSON](https://www.json.org/json-en.html)-oriented
-  prompting and [Pydantic](https://docs.pydantic.dev/latest/) validation to
-  turn model text into trustworthy data.
-- [03 - Multi-Step Reasoning And ReAct](03-multi-step-reasoning-and-react.ipynb):
-  Build an inspectable reason-act-observe loop with local tools and provider
-  calls.
-- [04 - Guardrails And Safety](04-guardrails-and-safety.ipynb): Add pre-call and
-  post-call checks for
-  [prompt injection](https://owasp.org/www-community/attacks/PromptInjection),
-  [PII-like input](https://csrc.nist.gov/pubs/sp/800/122/final), off-topic
-  requests, and unsafe outputs.
-- [05 - Prompt Evaluation Mini-Project](05-prompt-evaluation-mini-project.ipynb):
-  Evaluate candidate prompts against a small labeled dataset and write an
-  evidence-based improvement report.
+| File | Description |
+|------|-------------|
+| [01 - Prompting Foundations](01-prompting-foundations.ipynb) | Build prompt contracts, run [zero-shot and few-shot prompts](https://arxiv.org/abs/2005.14165), and compare real provider responses. |
+| [02 - Structured Outputs](02-structured-outputs.ipynb) | Use [JSON](https://www.json.org/json-en.html)-oriented prompting and [Pydantic](https://docs.pydantic.dev/latest/) validation to turn model text into trustworthy data. |
+| [03 - Multi-Step Reasoning and ReAct](03-multi-step-reasoning-and-react.ipynb) | Build an inspectable reason-act-observe loop with local tools and provider calls. |
+| [04 - Guardrails and Safety](04-guardrails-and-safety.ipynb) | Add pre-call and post-call checks for [prompt injection](https://owasp.org/www-community/attacks/PromptInjection), [PII-like input](https://csrc.nist.gov/pubs/sp/800/122/final), off-topic requests, and unsafe outputs. |
+| [05 - Prompt Evaluation Mini-Project](05-prompt-evaluation-mini-project.ipynb) | Evaluate candidate prompts against a small labeled dataset and write an evidence-based improvement report. |
 
 ## Repository Map
 
 ```text
 mle-prompt-engineering/
-├── assets/                           # local visual aids used in notebooks
-├── .env.example                      # provider configuration template
-├── requirements.txt                  # runtime dependencies
+├── assets/                    # Local visual aids used in notebooks
+├── .env.example               # Provider configuration template
 ├── 01-prompting-foundations.ipynb
 ├── 02-structured-outputs.ipynb
 ├── 03-multi-step-reasoning-and-react.ipynb
 ├── 04-guardrails-and-safety.ipynb
-└── 05-prompt-evaluation-mini-project.ipynb
+├── 05-prompt-evaluation-mini-project.ipynb
+├── README.md
+└── requirements.txt           # Runtime dependencies
 ```
 
 ## Environment
 
 Please make sure you **use this repository as a template** and set up a new virtual environment. You can use the following commands:
 
-### macOS
+### **`macOS`** / **`Linux`**
 
 ```bash
 pyenv local 3.11.3
@@ -70,21 +73,11 @@ python -m venv .venv
 source .venv/bin/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
-cp .env.example .env
 ```
 
-### Windows PowerShell
+### **`Windows`**
 
-```powershell
-pyenv local 3.11.3
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-Copy-Item .env.example .env
-```
-
-### Windows Git Bash
+For `Git Bash` CLI:
 
 ```bash
 pyenv local 3.11.3
@@ -92,7 +85,30 @@ python -m venv .venv
 source .venv/Scripts/activate
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+```
+
+For `PowerShell` CLI:
+
+```powershell
+pyenv local 3.11.3
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+Then copy the default local environment file:
+
+**`macOS`** / **`Linux`** / **`Git Bash`**
+
+```bash
 cp .env.example .env
+```
+
+**`PowerShell`**
+
+```powershell
+Copy-Item .env.example .env
 ```
 
 ## Provider Setup
@@ -135,22 +151,6 @@ and tool/function calling in
   while testing.
 - The notebooks use OpenAI-compatible chat completions through configurable
   `base_url` values rather than provider-specific SDKs.
-- Notebook images are sourced English-language diagrams, schemas, or screenshots
-  stored as PNG files. Each source page is linked beside the image in its
-  notebook.
-
-## Learning Objectives
-
-By the end of this repository, you should be able to:
-
-- Write zero-shot and few-shot prompts that reliably produce structured outputs.
-- Design prompts for multi-step reasoning with concise, inspectable final
-  outputs.
-- Implement a ReAct-style workflow for tasks requiring external information.
-- Extract structured data from unstructured text using schema-oriented prompt
-  design and validation.
-- Design guardrails that constrain LLM outputs to safe, on-topic responses,
-  including content filtering, prompt-injection resistance, and PII detection.
 
 ## Professional Tooling Context
 
