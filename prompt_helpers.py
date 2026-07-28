@@ -105,10 +105,9 @@ def dry_structured_payload(prompt: str) -> dict[str, object]:
     """Build deterministic JSON for structured-output examples."""
 
     label = dry_category_for_prompt(prompt)
-    if label == "BUG_REPORT":
-        priority = "high"
-    elif label == "BILLING" and any(
-        word in prompt.lower() for word in ["failure", "dispute", "charged"]
+    if label == "BUG_REPORT" or (
+        label == "BILLING"
+        and any(word in prompt.lower() for word in ["failure", "dispute", "charged"])
     ):
         priority = "high"
     else:
