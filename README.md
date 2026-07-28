@@ -133,7 +133,7 @@ Then open a notebook and select the Python environment created by `uv sync` as t
 
 - Provider free tiers, rate limits, model names, and billing rules can change.
   Check the provider console before running large evaluations.
-- The mini-project reads `MAX_EVAL_CASES` from `.env` so you can limit token use
+- Notebook 05 reads `MAX_EVAL_CASES` from `.env` so you can limit token use
   while testing.
 - The notebooks use OpenAI-compatible chat completions through configurable
   `base_url` values rather than provider-specific SDKs.
