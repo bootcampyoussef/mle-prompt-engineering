@@ -107,7 +107,7 @@ cp .env.example .env
 Open `.env` and set `LLM_PROVIDER` to `groq` or `mistral`, then add the matching key:
 
 - **Groq (primary):** Create a key at [console.groq.com/keys](https://console.groq.com/keys) and set `GROQ_API_KEY`.
-- **Mistral (alternative):** Create a key at [console.mistral.ai/api-keys](https://console.mistral.ai/api-keys) and set `MISTRAL_API_KEY`.
+- **Mistral (alternative):** Create a key following the [Mistral API key documentation](https://docs.mistral.ai/admin/security-access/api-keys) and set `MISTRAL_API_KEY`.
 
 The notebooks run in dry-run mode without a key, but real provider calls require one.
 
