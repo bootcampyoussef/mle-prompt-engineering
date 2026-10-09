@@ -41,7 +41,7 @@ By the end of this repository, you should be able to:
 
 > [!NOTE]
 > Throughout these steps, text in angle brackets like `<repo-name>` is a
-  **placeholder**. Replace it including the `< >` brackets with your own
+  **placeholder**. Replace it, including the `< >` brackets, with your own
   value. For example, `cd <repo-name>` becomes `cd mle-prompt-engineering`.
 
 ### 1. Create the Repository from the Template
@@ -116,7 +116,7 @@ The notebooks run in dry-run mode without a key, but real provider calls require
 
 ---
 
-### 6. Open the Notebooks
+### 6. Open the Repository in VS Code
 
 > [!NOTE]
 > Make sure you open VS Code from the project root so it automatically detects the environment created by `uv sync`.
