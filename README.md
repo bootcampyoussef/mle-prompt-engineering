@@ -32,7 +32,7 @@ By the end of this repository, you should be able to:
 
 | File / Folder | Description |
 |---|---|
-| [**assets**](assets/) | Visual aids referenced in the notebooks. |
+| [**assets**](assets/) | Visual aids referenced in the repository. |
 | [**.env.example**](.env.example) | Provider configuration template. |
 | [**pyproject.toml**](pyproject.toml) | Project configuration and dependencies. |
 | [**uv.lock**](uv.lock) | Dependency lock file. |
