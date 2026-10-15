@@ -142,6 +142,10 @@ def dry_chat(
         or "classify" in lowered_user
     ):
         return dry_category_for_prompt(latest_user)
+    if "return json" in lowered_user:
+        # Without JSON mode, live models usually wrap JSON in a markdown code fence.
+        payload = json.dumps(dry_structured_payload(latest_user), indent=2)
+        return f"```json\n{payload}\n```"
     return (
         "DRY RUN RESPONSE\n"
         "- Configure .env with a provider key to replace this with a live model response.\n"
